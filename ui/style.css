@@ -21,6 +21,10 @@ body {
 }
 
 .container{
-    padding-left: 20;
-    padding-right: 20;
+        max-width: 800px;
+        color: grey;
+        margin: 0 auto;
+        padding-top: 60px;
+        padding-left: 20px;
+        padding-right: 20px;
 }
