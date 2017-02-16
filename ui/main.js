@@ -22,7 +22,7 @@ button.onclick = function(){
         }  
     };
 };
-var counter = 0;
+//var counter = 0;
 
 request.open('GET', ' http://amoghkarve.imad.hasura-app.io/counter');
 request.send(null);
