@@ -24,4 +24,11 @@ button.onclick = function(){
     request.open('GET', ' http://amoghkarve.imad.hasura-app.io/counter',true);
     request.send(null);
 };
-//var counter = 0;
+
+
+var nameInput = document.getElementById('name');
+var name = nameINput.value;
+var submit = document.getElementById('submit_button');
+submit.onclick = function () {
+    
+};
