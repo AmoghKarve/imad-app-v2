@@ -1,4 +1,4 @@
-console.log('Loaded!');
+//console.log('Loaded!');
 
 /*var img = document.getElementById('madi');
 var marginLeft = 0;
@@ -8,7 +8,7 @@ function moveright(){
 }
 img.onclick = function () {
     var interval = setInterval(moveright,50);
-};*/
+};
 var button = document.getElementById('counter');
 button.onclick = function(){
     var request = new XMLHttpRequest();
@@ -50,4 +50,31 @@ submit.onclick = function () {
     request.open('GET', 'http://amoghkarve.imad.hasura-app.io/submit-name?name=' + name,true);
     request.send(null);
    
+};
+*/
+
+var submit = document.getElementById('submit_button');
+submit.onclick = function () {
+    
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function(){
+        if(request.readyState === XMLHttpRequest.DONE){
+            if(request.status === 200){
+                console.log('Login successful!!');
+                alert('Logged in successfully');
+            }else if(request.status === 400){
+                alert('username/password invalid')
+            }
+            else if(request.status === 500){
+                alert('Something went wrong');
+            }
+        }  
+    };
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
+    console.log(username);
+    console.log(password);
+    request.open('POST', 'http://amoghkarve.imad.hasura-app.io/login' + name,true);
+    request.setRequestHeader('Content-type = application.json');
+    request.send(JSON.stringify({username:username,password:password}));
 };
