@@ -108,7 +108,7 @@ app.post('/login',function(req,res){
                res.send(403).send("username/password invalid");
            }else{
                 var dbstring = result.rows[0].password;
-                var salt = dbSrting.split('$')[1];
+                var salt = dbSrting.split('$')[2];
                 var hashed = hash(password,salt);
                 if(hashed === dbString){
                     res.send('Credentials are correct!');
