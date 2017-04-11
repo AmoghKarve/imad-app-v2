@@ -74,7 +74,7 @@ submit.onclick = function () {
     var password = document.getElementById('password').value;
     console.log(username);
     console.log(password);
-    request.open('POST', 'http://amoghkarve.imad.hasura-app.io/login' + name,true);
+    request.open('POST', 'http://amoghkarve.imad.hasura-app.io/login',true);
     request.setRequestHeader('Content-type','application.json');
     request.send(JSON.stringify({username:username,password:password}));
 };
