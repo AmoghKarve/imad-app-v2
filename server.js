@@ -11,7 +11,7 @@ var config = {
     database:"amoghkarve",
     host:"db.imad.hasura-app.io",
     password:process.env.DB_PASSWORD
-}
+};
 
 var app = express();
 app.use(morgan('combined'));
@@ -173,7 +173,19 @@ app.get('/articles/:articleName', function(req,res){
     });
 });
 
-app.get('/getcrops')
+app.get('/getcrops',function(req,res){
+    var latitude = req.body.latitude;
+    var longitude = req.body.longitude;
+    pool.query("SELECT id,crop FROM Regions WHERE st_contains(poly, st_geomfromtext('POINT($1 $2)'))",[latitude,longitude],function(err,result){
+       if(err){
+           res.status(500).send(err.toString());
+       } 
+       else{
+           res.send('User successfully created:' + username);
+       }
+   });
+    
+});
 
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
