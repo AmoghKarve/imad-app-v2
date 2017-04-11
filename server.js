@@ -173,6 +173,8 @@ app.get('/articles/:articleName', function(req,res){
     });
 });
 
+app.get('/getcrops')
+
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
 });
