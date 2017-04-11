@@ -7,8 +7,8 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 
 var config = {
-    user:"amoghkarve",
-    database:"amoghkarve",
+    user:"u171381944_amogh",
+    database:"u171381944_amogh",
     host:"db.imad.hasura-app.io",
     password:process.env.DB_PASSWORD
 };
@@ -176,12 +176,17 @@ app.get('/articles/:articleName', function(req,res){
 app.get('/getcrops',function(req,res){
     var latitude = req.body.latitude;
     var longitude = req.body.longitude;
-    pool.query("SELECT id,crop FROM Regions WHERE st_contains(poly, st_geomfromtext('POINT($1 $2)'))",[latitude,longitude],function(err,result){
+    pool.query("SELECT crop FROM Regions WHERE st_contains(poly, st_geomfromtext('POINT($1 $2)'))",[latitude,longitude],function(err,result){
        if(err){
-           res.status(500).send(err.toString());
+           res.status(550).send(err.toString());
        } 
        else{
-           res.send('User successfully created:' + username);
+           if(result.rows.length === 0){
+                res.status(404).send("Region not registered");
+            }else{
+                var regionData = result.rows[0];
+                res.send(regionData.toString());
+            }
        }
    });
     
